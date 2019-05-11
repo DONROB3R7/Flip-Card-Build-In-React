@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React , {Component} from 'react';
+import Card from "./Component/Card.js";
+import RadioInput  from "./Component/Radio-input.js";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+  constructor(props){
+    super(props);
+
+    this.state={
+      hover: false,
+      colorStyle: 'color-1',
+    }
+    this.hoverOn = this.hoverOn.bind(this);
+    this.hoverOff = this.hoverOff.bind(this);
 }
+
+  hoverOn(){
+  this.setState({ hover: true });
+  }
+
+  hoverOff() {
+    this.setState({ hover: false });
+  }
+
+  colorChange = (colorStyle) =>{
+    console.log(colorStyle + "From Here")
+    this.setState({
+      colorStyle: colorStyle,
+    })
+  }
+
+
+  render(){
+    return (
+      <div>
+         <RadioInput colorChange={this.colorChange} checked={this.state.colorStyle === 'color-1' ? true : false}/>
+         <div className={this.state.colorStyle} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff}>
+          <Card name={this.state.hover ? "hover-on" : "hover-off"} />
+         </div>
+       </div>
+    )
+  }
+}
+
+
+
+
 
 export default App;
