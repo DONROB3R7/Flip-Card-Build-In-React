@@ -1,4 +1,5 @@
-# Flip-Card-Build-In-React.js-
+# Flip-Card-Build-In-React
+
 A simple react application
 
 Here’s the basic markup we’ll need:
